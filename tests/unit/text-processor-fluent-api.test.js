@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const { Project } = require("../../src/project");
 const { TextProcessorFluentAPI } = require("../../src/text-processor-fluent-api");
 const valid = require('../mocks/valid');
 
@@ -46,5 +47,32 @@ describe('TextProcessorFluentAPI', () => {
         ]
 
         expect(data).to.be.deep.equal(expected);
+    })
+
+    it('Should convert objects to project object', () => {
+          const data = textProcessorFluentAPI.convertRowsToObject().convertToProjectObject().build();
+          
+          const expected = [
+            new Project({
+                'título': 'Projeto de lei 584/2016',
+                link: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                autor: 'Jorge Wilson Xerife do Consumidor',
+                indexadoresnorma: 'CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO'
+            }),
+            new Project({
+                'título': 'Projeto de lei 580/2016',
+                link: 'http://www.al.sp.gov.br/propositura?id=1323286',
+                autor: 'Marcia Lia',
+                indexadoresnorma: 'NORMAS, REALIZAÇÃO, CONCURSO PÚBLICO ESTADUAL, ESTADO DE SÃO PAULO, ADMINISTRAÇÃO PÚBLICA DIRETA E INDIRETA'
+            }),
+            new Project({
+                'título': 'Projeto de lei 545/2016',
+                link: 'http://www.al.sp.gov.br/propositura?id=1322832',
+                autor: 'Roberto Morais, Itamar Borges',
+                indexadoresnorma: ''
+            })
+          ]
+        
+       expect(data).to.be.deep.equal(expected);
     })
 });
