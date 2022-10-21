@@ -1,13 +1,13 @@
-const { readFile } = require()
-const { join } = require()
-const { fileURLToPath } = require('url')
+const { readFile } = require('fs/promises')
+const { join } = require('path')
+const { TextProcessorFacade } = require('./text-processor-facade')
 
-(async () => {
 
-    const __dirname = fileURLToPath(new URL('.', import.meta.url))
-    const filePath = join(__dirname, '..', 'docs', 'projeto-de-lei.csv');
-    const dataBuffer = await readFile(filePath);
-    const data = dataBuffer.toString();
+const filePath = join(__dirname, '..', 'docs', 'projeto-de-lei.csv');
+readFile(filePath).then(_data => {
+    const data = _data.toString();
+    const projectObjects = new TextProcessorFacade(data).getProjectsFromCSV();
+    console.log(projectObjects);
+})
 
-    console.log(data);
-})()
+
