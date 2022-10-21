@@ -1,0 +1,24 @@
+{
+  "name": "@henricker/regex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "npx mocha --parallel tests/**/*.test.js",
+    "test:dev": "npx mocha -w tests/**/*.test.js",
+    "test:cov": "npx nyc npx mocha --parallel tests/**/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "safe-regex": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.3",
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
+    "nyc": "^15.1.0"
+  }
+}
