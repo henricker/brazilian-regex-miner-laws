@@ -13,8 +13,8 @@ class Project {
 
         const authorData = data.autor.split(',').map(item => {
             const itemTrim = item.trim();
-            const firstName = itemTrim.match(evaluateRegex(/^[a-zA-Z]+/gm))[0];
-            const lastName = itemTrim.match(evaluateRegex(/[a-zA-Z]+$/gm))[0]
+            const firstName = itemTrim.match(evaluateRegex(/^[a-zA-Z]+/gm))?.[0];
+            const lastName = itemTrim.match(evaluateRegex(/[a-zA-Z]+$/gm))?.[0];
 
             const nome = firstName + ' ' + lastName;
 
