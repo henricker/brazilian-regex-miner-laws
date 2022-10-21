@@ -3,7 +3,7 @@ const { evaluateRegex } = require("./util");
 class Project {
     constructor(data) {
         this.id = data.link.match(evaluateRegex(/(?<=\?id=)(.+)/))[0];
-        this.indexadores = data.indexadoresnorma.trim().split(',').filter(item => item);
+        this.indexadores = data.indexadoresnorma.split(',').filter(item => item).map(item => item.trim());
 
         const titleData = data['título'].match(evaluateRegex(/(?<=Projeto de lei )(.+)/))[0].split('/');
         
@@ -16,10 +16,14 @@ class Project {
             const firstName = itemTrim.match(evaluateRegex(/^[a-zA-Z]+/gm))[0];
             const lastName = itemTrim.match(evaluateRegex(/[a-zA-Z]+$/gm))[0]
 
-            return firstName + ' ' + lastName;
+            const nome = firstName + ' ' + lastName;
+
+            return {
+                nome,
+            }
         });
 
-        this.autor = authorData;
+        this.autores = authorData;
     }
 }
 
